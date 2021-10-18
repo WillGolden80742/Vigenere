@@ -42,6 +42,7 @@ public class Vigenere extends javax.swing.JFrame {
         cifrar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Vigenere");
 
         decifrar.setText("Decifrar");
         decifrar.addActionListener(new java.awt.event.ActionListener() {
@@ -52,14 +53,12 @@ public class Vigenere extends javax.swing.JFrame {
 
         input.setColumns(20);
         input.setRows(5);
-        input.setWrapStyleWord(true);
         jScrollPane1.setViewportView(input);
 
         jLabel1.setText("Chave");
 
         output.setColumns(20);
         output.setRows(5);
-        output.setWrapStyleWord(true);
         jScrollPane2.setViewportView(output);
 
         cifrar.setText("Cifrar");
@@ -105,11 +104,13 @@ public class Vigenere extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cifrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cifrarActionPerformed
+        output.setText("");
         new Thread(cifrarV).start();
     }//GEN-LAST:event_cifrarActionPerformed
 
     private void decifrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_decifrarActionPerformed
         new Thread(decifrarV).start();
+        output.setText("");
     }//GEN-LAST:event_decifrarActionPerformed
 
     private final Runnable cifrarV = new Runnable() {
