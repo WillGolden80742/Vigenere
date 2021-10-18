@@ -131,7 +131,7 @@ public class Vigenere extends javax.swing.JFrame {
                     }
                 }
             } else {
-                JOptionPane.showMessageDialog(null,"Defina sua chave!");
+                JOptionPane.showMessageDialog(null,"Defina sua chave");
             }
         }
     };
