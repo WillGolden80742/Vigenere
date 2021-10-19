@@ -124,7 +124,7 @@ public class Vigenere extends javax.swing.JFrame {
                 for (int i = 0; i < sizeChar; i++) {
                     ascii = (int) texto.charAt(i);
                     ascii += (int) chave.charAt(contKey);
-                    output.setText(output.getText() + ((char) ascii));
+                    output.append(""+((char) ascii));
                     if (contKey != sizeKey) {
                         contKey++;
                     } else {
@@ -148,7 +148,7 @@ public class Vigenere extends javax.swing.JFrame {
                 for (int i = 0; i < sizeChar; i++) {
                     ascii = (int) texto.charAt(i);
                     ascii -= (int) chave.charAt(contKey);
-                    output.setText(output.getText() + ((char) ascii));
+                    output.append(""+((char) ascii));
                     if (contKey != sizeKey) {
                         contKey++;
                     } else {
