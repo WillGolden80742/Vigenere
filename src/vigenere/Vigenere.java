@@ -109,8 +109,8 @@ public class Vigenere extends javax.swing.JFrame {
     }//GEN-LAST:event_cifrarActionPerformed
 
     private void decifrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_decifrarActionPerformed
-        new Thread(decifrarV).start();
         output.setText("");
+        new Thread(decifrarV).start();
     }//GEN-LAST:event_decifrarActionPerformed
 
     private final Runnable cifrarV = new Runnable() {
