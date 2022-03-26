@@ -1,10 +1,9 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package vigenere;
 
 import com.formdev.flatlaf.FlatDarkLaf;
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
@@ -113,26 +112,35 @@ public class Vigenere extends javax.swing.JFrame {
         new Thread(decifrarV).start();
     }//GEN-LAST:event_decifrarActionPerformed
 
+    public static String getHashMd5(String value) {
+        MessageDigest md;
+        try {
+            md = MessageDigest.getInstance("MD5");
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
+        }
+        BigInteger hash = new BigInteger(1, md.digest(value.getBytes()));
+        return hash.toString(16);
+    }
+    
     private final Runnable cifrarV = new Runnable() {
         @Override
         public void run() {
             String texto = input.getText();
             String chave = chaveField.getText();
-            int ascii = 0, contKey = 0, sizeKey = chave.length() - 1, sizeChar = texto.length();
+            int ascii = 0, contKey = 0, sizeKey = chave.length(), sizeChar = texto.length();
             output.setText("");
             if (!chave.equals("")) {
                 for (int i = 0; i < sizeChar; i++) {
                     ascii = (int) texto.charAt(i);
-                    ascii += (int) chave.charAt(contKey);
-                    output.append(""+((char) ascii));
-                    if (contKey != sizeKey) {
-                        contKey++;
-                    } else {
+                    ascii += (int) chave.charAt(contKey++);
+                    output.append("" + ((char) ascii));
+                    if (contKey == sizeKey) {
                         contKey = 0;
                     }
                 }
             } else {
-                JOptionPane.showMessageDialog(null,"Defina sua chave");
+                JOptionPane.showMessageDialog(null, "Defina sua chave");
             }
         }
     };
@@ -142,28 +150,24 @@ public class Vigenere extends javax.swing.JFrame {
         public void run() {
             String texto = input.getText();
             String chave = chaveField.getText();
-            int ascii = 0, contKey = 0, sizeKey = chave.length() - 1, sizeChar = texto.length();
+            int ascii = 0, contKey = 0, sizeKey = chave.length(), sizeChar = texto.length();
             output.setText("");
             if (!chave.equals("")) {
                 for (int i = 0; i < sizeChar; i++) {
                     ascii = (int) texto.charAt(i);
-                    ascii -= (int) chave.charAt(contKey);
-                    output.append(""+((char) ascii));
-                    if (contKey != sizeKey) {
-                        contKey++;
-                    } else {
+                    ascii -= (int) chave.charAt(contKey++);
+                    output.append("" + ((char) ascii));
+                    if (contKey == sizeKey) {
                         contKey = 0;
                     }
                 }
             } else {
-                JOptionPane.showMessageDialog(null,"Defina sua chave!");
+                JOptionPane.showMessageDialog(null, "Defina sua chave!");
             }
         }
     };
 
-    /**
-     * @param args the command line arguments
-     */
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         try {
