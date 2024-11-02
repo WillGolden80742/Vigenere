@@ -52,4 +52,3 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 ## Acknowledgments
 - FlatLaf for providing a modern, easy-to-integrate dark theme for Java Swing applications.
-```
